@@ -1,25 +1,20 @@
-import { useUser, SignInButton, SignUpButton, UserButton } from "@clerk/react";
+import './App.css'
+import { Show, SignInButton, SignUpButton, UserButton } from '@clerk/react'
 
 function App() {
-  const { isSignedIn, user } = useUser();
-
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Welcome to IntervueX 🚀</h1>
-
-      {!isSignedIn ? (
-        <>
+    <>
+      <header>
+        <Show when="signed-out">
           <SignInButton />
           <SignUpButton />
-        </>
-      ) : (
-        <>
+        </Show>
+        <Show when="signed-in">
           <UserButton />
-          <p>Hello {user?.firstName} 👋</p>
-        </>
-      )}
-    </div>
-  );
+        </Show>
+      </header>
+    </>
+  )
 }
 
-export default App;
+export default App
